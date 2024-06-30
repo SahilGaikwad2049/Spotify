@@ -135,6 +135,7 @@ body{
     background-color: rgba(0, 0, 0, .7);
     padding: 12px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .buts{
@@ -152,6 +153,7 @@ body{
     background-color: rgba(0, 0, 0, .7);
     /* padding: 2px; */
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .head{
@@ -257,9 +259,30 @@ body{
 .playbar{
     position: absolute;
     bottom: 0;
-    width: 100%;
-    border: 2px solid white;
+    width: 100vw;
+    /* border: 2px solid white; */
     right: 4px;
-    padding: 20px;
+    padding: 30px;
     background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.bien{
+    background-color: black;
+    border: none;
+}
+
+.play{
+    display: flex;
+    gap: 25px;
+}
+
+.play button{
+    border-radius: 50%;
+    border: none;
+    padding: 11px;
+    cursor: pointer;
+}
+
