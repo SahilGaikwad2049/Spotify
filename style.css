@@ -268,16 +268,17 @@ body{
 }
 
 .playbar{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100vw;
     /* border: 2px solid white; */
     right: 4px;
-    padding: 17px;
+    padding: 20px 12px;
     background-color: black;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    /* position: relative; */
 }
 
 .bien{
@@ -293,13 +294,17 @@ body{
 .play .btnn button{
     border-radius: 50%;
     border: none;
-    padding: 15px;
+    padding: 10px;
     cursor: pointer;
 }
 
 .bar{
-    width: 25vw;
-    border: 2px solid #b3b3b3;
+    width: 35vw;
+    border-radius: 10px;
+    height: 4px;
+    background-color: #fff;
+    border: none;
+    position: relative;
 }
 
 .play{
@@ -352,6 +357,55 @@ body{
 }
 
 .artists{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.circle{
+    height: 8px;
+    width: 8px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-color: #fff;
+    position: fixed;
+    bottom: 28px;
+    left: 31vw;
+    cursor: pointer;
+    transition: left 0.3s;
+} 
+
+.durat{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    color: #b3b3b3;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* border: 2px solid white; */
+    border: none;
+    width: 25vw;
+    padding: 10px;
+    position: absolute;
+    left: 50px;
+}
+
+.hey{
+    font-size: 19px;
+    font-weight: 500;
+    color: white;
+}
+
+.tds{
+    font-size: 16px;
+    color: #b3b3b3;
+}
+
+.sub{
     display: flex;
     flex-direction: column;
     gap: 5px;

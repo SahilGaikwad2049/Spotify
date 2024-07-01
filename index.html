@@ -7,6 +7,7 @@
     <title>Spotify - Web Player: Music for everyone</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <link rel="shortcut icon" href="https://open.spotify.com/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -47,7 +48,7 @@
                 </div> -->
                 <div class="songList">
                     <ul>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -91,8 +92,8 @@
                         <img width="55px" src="images/snow.webp" alt="">
                         <div>Angrezi</div>
                     </div>
-                    <div class="cards what">
-                        <img width="55px" src="images/ghazals.jpeg" alt="">
+                    <div class="cards what ghazalz">
+                        <img width="47px" src="images/tabla.jpg" alt="">
                         <div>Ghazals</div>
                     </div>
                     <div class="cards what">
@@ -100,7 +101,7 @@
                         <div>Katy Perry</div>
                     </div>
                     <div class="cards what">
-                        <img width="55px" src="images/diljit.jpeg" alt="">
+                        <img width="52px" src="images/diljit.jpeg" alt="">
                         <div>Diljit Dosanjh</div>
                     </div>
                 </div>
@@ -119,30 +120,41 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div class="playbar">
-            <div class="info"></div>
-            <div class="play">
-                <div class="btnn">
-                    <button class="bien">
-                        <img class="inv" width="22px" src="images/prev.svg" alt="">
-                    </button>
-                    <button>
-                        <img width="22px" src="images/play.svg" alt="">
-                    </button>
-                    <button class="bien">
-                        <img class="inv" width="22px" class="bien" src="images/next.svg" alt="">
-                    </button>
-                </div>
-                <div class="bar">
-
+            <div class="info">
+                <!-- <div class="circle"></div> -->
+                <img src="" alt="">
+                <div class="sub">
+                    <div class="hey"></div>
+                    <div class="tds"></div>
                 </div>
             </div>
-            <div class="time"></div>
+            
+            <div class="play">
+                
+                <div class="btnn">
+                    <button class="bien one">
+                        <img id="previous" class="inv" width="22px" src="images/prev.svg" alt="">
+                    </button>
+                    <button>
+                        <img id="pray" width="23px" src="images/play.svg" alt="">
+                    </button>
+                    <button class="bien">
+                        <img id="next" class="inv" width="22px" class="bien" src="images/next.svg" alt="">
+                    </button>
+                </div>
+                <div class="durat">
+                    <div class="long">0:00</div>
+                    <div class="bar"></div>
+                    <div class="end">0:00</div>
+                </div>
+                
+            </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>
