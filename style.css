@@ -95,14 +95,13 @@ body{
 
 .symbols{
     display: flex;
-    gap: 20px;
 }
 
 .down{
     display: flex;
     flex-direction: column;
-    gap: 45px;
-    min-height: 37vw;
+    gap: 35px;
+    min-height: 38.5vw;
 }
 
 .ents{
@@ -274,7 +273,7 @@ body{
     width: 100vw;
     /* border: 2px solid white; */
     right: 4px;
-    padding: 18px;
+    padding: 17px;
     background-color: black;
     display: flex;
     justify-content: center;
@@ -310,3 +309,50 @@ body{
     align-items: center;
 }
 
+.songList ul li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 22px 8px;
+    border-radius: 5px;
+    height: 40px;
+    overflow: hidden;
+    font-size: 19px;
+    position: relative;
+}
+
+.songList ul li:hover{
+    cursor: pointer;
+    background-color: #242424;
+}
+
+.cv{
+    display: flex;
+    align-items: center;
+}
+
+.cv button{
+    background-color: #1ed760;
+    border: none;
+    padding: 12px;
+    border-radius: 100%;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+}
+
+.songList ul li img{
+    border-radius: 5px;
+}
+
+.tits{
+    color: #b3b3b3;
+    font-size: 18px;
+}
+
+.artists{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
