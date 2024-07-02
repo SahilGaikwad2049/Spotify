@@ -1,5 +1,12 @@
 let currentSong = new Audio();
 
+let objG = {		
+    "Chupke Chupke Raat Din" : "/Spotify/images/gaz/chupke.jpeg",
+    "Hoshwalon Ko Khabar Kya" : "/Spotify/images/gaz/hosh.jpeg",
+    "Hothon Se Chhu Lo Tum" : "/Spotify/images/gaz/ghazals.jpeg",
+    "Humko Kiske Gham Ne Mara" : "/Spotify/images/gaz/humko.jpeg"
+}
+
 function minutesToSeconds(seconds) {
     let min = Math.floor(seconds / 60);
     let sec = seconds % 60;
@@ -52,9 +59,20 @@ imags()
 const playTheSong = (track) =>{
     currentSong.src = "/Spotify/Ghazals/" + track;
     currentSong.play()
-    document.querySelector(".info").querySelector(".sub").firstElementChild.innerHTML = track.split(".")[0].split("-")[0]
-    document.querySelector(".info").querySelector(".sub").querySelector(".tds").innerHTML = track.split(".")[0].split("-")[1]
     
+//    let x = document.querySelector(".info").querySelector(".sub").firstElementChild.innerHTML = track.split(".")[0].split("-")[0]
+//     document.querySelector(".info").querySelector(".sub").querySelector(".tds").innerHTML = track.split(".")[0].split("-")[1]
+//     document.querySelector(".info").getElementsByTagName("img").innerHTML = `$objG[x]`
+
+    const[music, musician] = track.split(".")[0].split("-");
+    let musicElement = document.querySelector(".info .sub").firstElementChild;
+    musicElement.innerHTML = music;
+
+    let musicianElement = document.querySelector(".info .sub .tds");
+    musicianElement.innerHTML = musician;
+
+    let imgElement = document.querySelector(".info img");
+    imgElement.src = objG[`${music}`]
 }
 
 async function main()
@@ -67,11 +85,7 @@ async function main()
 
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
 
-    let objG = {		
-        "Chupke Chupke Raat Din" : "/Spotify/images/gaz/chupke.jpeg",
-        "Hoshwalon Ko Khabar Kya" : "/Spotify/images/gaz/hosh.jpeg",
-        "Hothon Se Chhu Lo Tum" : "/Spotify/images/gaz/ghazals.jpeg"
-    }
+    
 
     for (const j of songs) {
         const title = j.replaceAll("%20", " ").split(".")[0].split("-")[0]
@@ -82,19 +96,46 @@ async function main()
                                     <div>${j.replaceAll("%20", " ").split(".")[0].split("-")[0]}</div>
                                     <div class="tits">${j.replaceAll("%20", " ").split(".")[0].split("-")[1]}</div>
                                 </div>
-                                    <button>
-                                        <img width="20px" src="images/play2.svg" alt="">
-                                    </button>
+                                   
                             </div>
          </li>`;
     }
+
+    // document.querySelectorAll(".songList ul li").forEach(item => {
+    //     item.addEventListener("mouseover", e => {
+    //         const cv = e.currentTarget.querySelector(".cv");
+    //         if (!cv.querySelector(".play-button")) { // Check if the button doesn't already exist
+    //             cv.innerHTML += `
+    //                 <button class="play-button">
+    //                     <img width="20px" src="images/play2.svg" alt="">
+    //                 </button>`;
+    //         }
+    //     });
+    
+    //     item.addEventListener("mouseout", e => {
+    //         const playButton = e.currentTarget.querySelector(".play-button");
+    //         if (playButton) {
+    //             playButton.remove();
+    //         }
+    //     });
+    // });
+    
+    // document.querySelectorAll(".songList ul li").forEach(e => {
+    //     e.addEventListener("click", e => {
+    //         const cv = e.currentTarget.querySelector(".cv")
+    //         cv.innerHTML += `
+    //                  <button class="play-button">
+    //                      <img width="20px" src="images/play2.svg" alt="">
+    //              </button>`;
+    //     })
+    // })
 
     Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e=>{
         e.addEventListener("click", element=>{
             console.log(e.querySelector(".artists").firstElementChild.innerHTML);
             playTheSong(e.querySelector(".artists").firstElementChild.innerHTML+"-"+e.querySelector(".artists").querySelector(".tits").innerHTML+".mp3");
             pray.src = "images/pause.svg"
-        })
+        }) 
     })
 
     pray.addEventListener("click", ()=>{
@@ -112,7 +153,13 @@ async function main()
     currentSong.addEventListener("timeupdate", ()=>{
         document.querySelector(".durat").querySelector(".long").innerHTML = `${minutesToSeconds(currentSong.currentTime).split(".")[0]}`
         document.querySelector(".durat").querySelector(".end").innerHTML = `${minutesToSeconds(currentSong.duration).split(".")[0]}`
-        // document.querySelector(".circle").style.left = .5+"vw"
+        document.querySelector(".circle").style.left = ((currentSong.currentTime / currentSong.duration)*100 - 1.4) + "%"
+    })
+
+    document.querySelector(".bar").addEventListener("click",e=>{
+        let per = (e.offsetX/e.target.getBoundingClientRect().width)*100;
+        document.querySelector(".circle").style.left = per + "%";
+        currentSong.currentTime = ((currentSong.duration)*per)/100
     })
 }
 
