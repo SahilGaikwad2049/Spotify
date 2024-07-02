@@ -12,7 +12,7 @@ let objG = {
     "Peaches" : "/Spotify/images/dil/lover.jpeg",
     "Firework" : "/Spotify/images/katyy/cali.jpeg",
     "Hot N Cold" : "/Spotify/images/katyy/hotncold.jpeg",
-    "Last Friday Night" : "/Spotify/images/katyy/cali.jpeg",
+    "Last Friday Night (TGIF)" : "/Spotify/images/katyy/cali.jpeg",
     "Ik Kudi" : "/Spotify/images/jain/ikkudi.jpeg",
     "Aadha Ishq" : "/Spotify/images/liked/ishq.jpeg",
     "Choo Lo" : "/Spotify/images/liked/choolo.jpeg",
@@ -21,7 +21,7 @@ let objG = {
     "Cupid : Twin Version":"/Spotify/images/eng/cupid.jpeg",
     "Octopus's Garden":"/Spotify/images/eng/oct.jpeg",
     "Last Christmas":"/Spotify/images/eng/last.jpeg",
-    "Raabta":"/Spotify/images/jain/raabta.jpeg",
+    "Raabta":"/Spotify/images/jain/raabta.jpeg"
 }
 
 function minutesToSeconds(seconds) {
@@ -34,7 +34,7 @@ function minutesToSeconds(seconds) {
 async function getSongs(folder) {
     currFolder = folder;
 
-        let a = await fetch(`http://127.0.0.1:3000/Spotify/${folder}/`);
+        let a = await fetch(`http://127.0.0.1:3000/Spotify/songs/${folder}/`);
         let res = await a.text();
     
         let div = document.createElement("div");
@@ -56,7 +56,7 @@ async function getSongs(folder) {
 
 const playTheSong = (track) => {
     const decodedTrack = decodeURIComponent(track); 
-    currentSong.src = `/Spotify/${currFolder}/${decodedTrack}`;
+    currentSong.src = `/Spotify/songs/${currFolder}/${decodedTrack}`;
     currentSong.play()
 
     const [music, musician] = decodedTrack.split(".")[0].split("-");
@@ -72,7 +72,7 @@ const playTheSong = (track) => {
 
 
 async function main() {
-    let songs = await getSongs("Ghazals");
+    let songs = await getSongs("hehe");
 
     let songUL = document.querySelector(".songList ul");
 
@@ -90,15 +90,6 @@ async function main() {
                                  </li>`;
         }
     }
-
-    Array.from(document.querySelectorAll(".songList ul li")).forEach(e => {
-        e.addEventListener("click", () => {
-            const title = e.querySelector(".artists").firstElementChild.innerHTML;
-            const artist = e.querySelector(".artists .tits").innerHTML;
-            playTheSong(`${title}-${artist}.mp3`);
-            document.getElementById("pray").src = "images/pause.svg";
-        });
-    });
 
     document.getElementById("pray").addEventListener("click", () => {
         if (currentSong.paused) {
@@ -134,6 +125,50 @@ async function main() {
         if ((i + 1) < songs.length) {
             playTheSong(songs[i + 1]);
         }
+    });
+
+    Array.from(document.getElementsByClassName("cards what")).forEach(e => {
+        e.addEventListener("click", async function() {
+            const folder = this.dataset.folder;
+            if (folder) {
+                let newSongs = await getSongs(folder);
+                songs = newSongs; 
+
+                songUL.innerHTML = "";
+                for (const j of songs) {
+                    if (j) {
+                        const title = j.replaceAll("%20", " ").split(".")[0].split("-")[0];
+                        songUL.innerHTML += `<li> 
+                                                <img width="70px" src=${objG[title] || "default-image-path"} alt="">
+                                                <div class="cv">
+                                                    <div class="artists">
+                                                        <div>${title}</div>
+                                                        <div class="tits">${j.replaceAll("%20", " ").split(".")[0].split("-")[1]}</div>
+                                                    </div>
+                                                </div>
+                                             </li>`;
+                    }
+                }
+
+                Array.from(document.querySelectorAll(".songList ul li")).forEach(e => {
+                    e.addEventListener("click", () => {
+                        const title = e.querySelector(".artists").firstElementChild.innerHTML;
+                        const artist = e.querySelector(".artists .tits").innerHTML;
+                        playTheSong(`${title}-${artist}.mp3`);
+                        document.getElementById("pray").src = "images/pause.svg";
+                    });
+                });
+
+                Array.from(document.querySelectorAll(".primo .container .box")).forEach(e => {
+                    e.addEventListener("click", () => {
+                        const title = e.querySelector(".artists").firstElementChild.innerHTML;
+                        const artist = e.querySelector(".artists .tits").innerHTML;
+                        playTheSong(`${title}-${artist}.mp3`);
+                        document.getElementById("pray").src = "images/pause.svg";
+                    });
+                });
+            }
+        });
     });
 
     Array.from(document.getElementsByClassName("cards what")).forEach(e => {
