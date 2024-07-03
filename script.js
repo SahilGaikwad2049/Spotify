@@ -21,7 +21,8 @@ let objG = {
     "Cupid : Twin Version":"/Spotify/images/eng/cupid.jpeg",
     "Octopus's Garden":"/Spotify/images/eng/oct.jpeg",
     "Last Christmas":"/Spotify/images/eng/last.jpeg",
-    "Raabta":"/Spotify/images/jain/raabta.jpeg"
+    "Raabta":"/Spotify/images/jain/raabta.jpeg",
+    "Select a Playlist" : "Spotify/images/"
 }
 
 function minutesToSeconds(seconds) {
@@ -68,6 +69,7 @@ const playTheSong = (track) => {
 
     let imgElement = document.querySelector(".info img");
     imgElement.src = objG[music]
+
 }
 
 
@@ -105,6 +107,13 @@ async function main() {
         document.querySelector(".durat .long").innerHTML = minutesToSeconds(currentSong.currentTime).split(".")[0];
         document.querySelector(".durat .end").innerHTML = minutesToSeconds(currentSong.duration).split(".")[0];
         document.querySelector(".circle").style.left = ((currentSong.currentTime / currentSong.duration) * 100 - 1.4) + "%";
+        if(currentSong.currentTime == currentSong.duration)
+        {let i = songs.indexOf(currentSong.src.split("/").pop());
+            if ((i + 1) < songs.length) {
+                playTheSong(songs[i + 1]);
+                // document.getElementById("pray").src = "images/play.svg";
+            }
+        }
     });
 
     document.querySelector(".bar").addEventListener("click", e => {
