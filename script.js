@@ -22,6 +22,7 @@ let objG = {
     "Octopus's Garden":"/Spotify/images/eng/oct.jpeg",
     "Last Christmas":"/Spotify/images/eng/last.jpeg",
     "Raabta":"/Spotify/images/jain/raabta.jpeg",
+    "Dildaara (Stand By Me)":"/Spotify/images/liked/raone.jpeg",
     "Select a Playlist" : "Spotify/images/"
 }
 
