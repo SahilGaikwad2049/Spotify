@@ -103,6 +103,20 @@ async function main() {
         }
     });
 
+    document.addEventListener("keydown", (e) => {
+        if(e.code==='Space')
+        {
+            e.preventDefault();
+            if (currentSong.paused) {
+                currentSong.play()
+                document.getElementById("pray").src = "images/pause.svg";
+            } else {
+                currentSong.pause();
+                document.getElementById("pray").src = "images/play.svg";
+            }
+        }
+    });
+
     currentSong.addEventListener("timeupdate", () => {
         document.querySelector(".durat .long").innerHTML = minutesToSeconds(currentSong.currentTime).split(".")[0];
         document.querySelector(".durat .end").innerHTML = minutesToSeconds(currentSong.duration).split(".")[0];
